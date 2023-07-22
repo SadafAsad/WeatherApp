@@ -67,6 +67,10 @@ const UpcomingWeather = () => {
         <SafeAreaView style={styles.container}>
             <Text> Upcoming Weather </Text>
             <ImageBackground 
+                // props are used to pass data from parent to child
+                // they can be used to customize our components
+                // core components usually come with props which can be used
+                // prop source here is used to set the image
                 source={require('../../assets/upcoming-background.jpg')} 
                 style={styles.image} 
             >
