@@ -1,7 +1,10 @@
+// when component is being imported no need for {}
 import React from "react"
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import RowText from "../components/RowText";
+// when exported objects are being imported we need {}
+import { weatherType } from "../utilities/weatherType";
 
 const CurrentWeather = () => {
   const { 
@@ -31,7 +34,7 @@ const CurrentWeather = () => {
       </View>
       <RowText
         messageOne={'It\'s Sunny'}
-        messageTwo={'It\'s perfect t-shirt weather'}
+        messageTwo={weatherType['Thunderstorm'].message}
         containerStyles={bodyWrapper}
         messageOneStyles={description}
         messageTwoStyles={message}
