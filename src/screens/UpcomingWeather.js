@@ -1,5 +1,5 @@
 import React from "react"
-import { SafeAreaView, StyleSheet, Text, FlatList, View, StatusBar, ImageBackground } from "react-native"
+import { SafeAreaView, StyleSheet, Text, FlatList, StatusBar, ImageBackground } from "react-native"
 import { Feather } from '@expo/vector-icons'
 import ListItem from "../components/ListItem"
 
@@ -51,8 +51,10 @@ const UpcomingWeather = () => {
             max={item.main.temp_max} 
         />
     )
+    const { container, image } = styles
+    
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={container}>
             <Text> Upcoming Weather </Text>
             <ImageBackground 
                 // props are used to pass data from parent to child
@@ -60,7 +62,7 @@ const UpcomingWeather = () => {
                 // core components usually come with props which can be used
                 // prop source here is used to set the image
                 source={require('../../assets/upcoming-background.jpg')} 
-                style={styles.image} 
+                style={image} 
             >
                 <FlatList
                     data={DATA}
