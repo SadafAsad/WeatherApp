@@ -1,8 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, Button, StyleSheet, SafeAreaView } from 'react-native'
 
 const Counter = () => {
   const [count, setCount] = useState(0)
+  const [newCount, setNewCount] = useState(0)
+
+  useEffect(() => {
+    console.log(`Count changed`)
+    return () => {
+      console.log('useEffect CleanUp')
+    }
+  }, [count])
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
@@ -16,6 +25,16 @@ const Counter = () => {
           color={'green'}
           title={'Decrese the count'}
           onPress={() => setCount(count - 1)}
+        />
+        <Button
+          color={'red'}
+          title={'Increase the count'}
+          onPress={() => setNewCount(count + 1)}
+        />
+        <Button
+          color={'green'}
+          title={'Decrese the count'}
+          onPress={() => setNewCount(count - 1)}
         />
       </View>
     </SafeAreaView>
