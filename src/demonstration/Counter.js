@@ -6,7 +6,7 @@ const Counter = () => {
   const [newCount, setNewCount] = useState(0)
 
   useEffect(() => {
-    console.log(`Count changed`)
+    console.log('Count changed')
     return () => {
       console.log('useEffect CleanUp')
     }
