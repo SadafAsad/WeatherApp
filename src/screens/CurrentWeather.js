@@ -1,13 +1,13 @@
 // when component is being imported no need for {}
-import React from "react"
+import React from 'react'
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons';
-import RowText from "../components/RowText";
+import { Feather } from '@expo/vector-icons'
+import RowText from '../components/RowText'
 // when exported objects are being imported we need {}
-import { weatherType } from "../utilities/weatherType";
+import { weatherType } from '../utilities/weatherType'
 
 const CurrentWeather = () => {
-  const { 
+  const {
     wrapper,
     container,
     temp,
@@ -17,11 +17,11 @@ const CurrentWeather = () => {
     bodyWrapper,
     description,
     message
-   } = styles
+  } = styles
   return (
     <SafeAreaView style={wrapper}>
       <View style={container}>
-        <Feather name="sun" size={100} color="black"/>
+        <Feather name="sun" size={100} color="black" />
         <Text style={temp}> 6 </Text>
         <Text style={feels}> Feels like 5 </Text>
         <RowText
@@ -33,8 +33,8 @@ const CurrentWeather = () => {
         />
       </View>
       <RowText
-        messageOne={'It\'s Sunny'}
-        messageTwo={weatherType['Thunderstorm'].message}
+        messageOne={"It's Sunny"}
+        messageTwo={weatherType.Thunderstorm.message}
         containerStyles={bodyWrapper}
         messageOneStyles={description}
         messageTwoStyles={message}
