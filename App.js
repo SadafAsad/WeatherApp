@@ -3,16 +3,28 @@ import { ActivityIndicator, View, StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import Tabs from './src/components/Tabs'
 import * as Location from 'expo-location'
-import { TEST_KEY } from '@env'
-
-// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+import { WEATHER_API_KEY } from '@env'
 
 const App = () => {
   const [loading, setLoading] = useState(true)
   const [location, setLocation] = useState(null)
   const [error, setError] = useState(null)
+  const [weather, setWeather] = useState([])
 
-  console.log(TEST_KEY)
+  const fetchWeatherData = async () => {
+    try {
+      const res = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${location.coords.latitude}&lon=${location.coords.longitude}&appid=${WEATHER_API_KEY}`)
+      const data = await res.json()
+      setWeather(data)
+      setLoading(false)
+    } catch (error) {
+      setError('Could not fetch weather')
+    } finally {
+      // This will execute after try catch is done
+      // either show the data or the error
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     ;(async () => {
@@ -23,6 +35,7 @@ const App = () => {
       }
       let location = await Location.getCurrentPositionAsync({})
       setLocation(location)
+      await fetchWeatherData()
     })()
   }, [])
 
