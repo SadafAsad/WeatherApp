@@ -8,11 +8,7 @@ WeatherApp is a user-friendly weather app that provides you with real-time weath
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [License](#license)
 - [Acknowledgments](#acknowledgments)
-- [Contact](#contact)
 
 ## Project Description
 
@@ -27,9 +23,9 @@ Location-Based: WeatherApp automatically detects your current location, so you a
 
 ## Installation
 
-Clone the repository: git clone https://github.com/SadafAsad/WeatherApp.git
+Clone the repository: `git clone https://github.com/SadafAsad/WeatherApp.git`
 
-Navigate to the project directory: cd WeatherApp
+Navigate to the project directory: `cd WeatherApp`
 
 Install dependencies:
 
@@ -61,33 +57,20 @@ Enter your API key in the .env file
 
 ## Usage
 
-[Provide instructions on how to use your project. Include code examples and demos if applicable.]
+``` npm run ```
 
 ## Configuration
 
-[If your project requires configuration, explain the necessary steps and options available.]
+Initialize eslint: `npx eslint –init` 
+Run lint using: `npm run lint`
 
-## Documentation
-
-[If your project is extensive, consider providing a link to comprehensive documentation.]
-
-## Contributing
-
-[Outline guidelines for contributing to your project, including coding standards and pull request guidelines.]
-
-## License
-
-[Specify the license under which your project is distributed.]
+Note: If you got any error while running, it might be caused because of the incompatibility between eslint and prettier.
+Resolve with: `npm install --save-dev eslint-plugin-prettier@[*version*]`
 
 ## Acknowledgments
 
-[Give credit to the authors of third-party libraries, tools, or code snippets you used.]
+Thanks for providing inspiration and code snippets: 
 
-## Contact
+[Weather App Demo](https://github.com/Em01/weather-app-demo) developed by [Em01](https://github.com/Em01)
 
-[Provide a way for users to contact you if they have questions or need support.]
-
----
-
-[Include any badges or additional information you want to display.]
 
