@@ -62,9 +62,11 @@ Enter your API key in the .env file
 ## Configuration
 
 Initialize eslint: `npx eslint –init` 
+
 Run lint using: `npm run lint`
 
-Note: If you got any error while running, it might be caused because of the incompatibility between eslint and prettier.
+Note: If you got any error in running stage, it might be due to the incompatibility between eslint and prettier.
+
 Resolve with: `npm install --save-dev eslint-plugin-prettier@[*version*]`
 
 ## Acknowledgments
