@@ -33,6 +33,7 @@ Navigate to the project directory: cd WeatherApp
 
 Install dependencies:
 
+```
 brew install node
 
 npm install -g expo-cli
@@ -53,7 +54,8 @@ npx expo install expo-location
 
 npm install -D react-native-dotenv 
 
-npm install moment --save 
+npm install moment --save
+```
 
 Enter your API key in the .env file
 
