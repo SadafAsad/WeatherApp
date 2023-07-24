@@ -19,27 +19,43 @@ WeatherApp is a user-friendly weather app that provides you with real-time weath
 The app offers a comprehensive set of features, including:
 
 Current Weather: Get up-to-date information about the current weather conditions in your area.
+
 5-Day Forecasts: Plan ahead with accurate 5-day forecasts, updated at 3-hour intervals.
+
 Location-Based: WeatherApp automatically detects your current location, so you always get localized weather updates.
 
 
 ## Installation
 
-Clone the repository: git clone https://github.com/yourusername/weather-now.git
+Clone the repository: git clone https://github.com/SadafAsad/WeatherApp.git
+
 Navigate to the project directory: cd WeatherApp
+
 Install dependencies:
 
 brew install node
+
 npm install -g expo-cli
+
 npm install rslint --save-dev 
+
 npm install @react-native-community/eslint-config --save-dev
+
 npm install --save-dev --save-exact prettier
+
 npm install @react-navigation/native 
+
 npx expo install react-native-screens react-native-safe-area-context
+
 npm install @react-navigation/bottom-tabs
+
 npx expo install expo-location 
+
 npm install -D react-native-dotenv 
+
 npm install moment --save 
+
+Enter your API key in the .env file
 
 ## Usage
 
