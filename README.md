@@ -67,7 +67,7 @@ Run lint using: `npm run lint`
 
 Note: If you got any error in running stage, it might be due to the incompatibility between eslint and prettier.
 
-Resolve with: `npm install --save-dev eslint-plugin-prettier@[*version*]`
+Resolve with: `npm install --save-dev eslint-plugin-prettier@[_version_]`
 
 ## Acknowledgments
 
