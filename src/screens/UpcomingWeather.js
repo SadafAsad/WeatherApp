@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  SafeAreaView,
-  StyleSheet,
-  FlatList,
-  StatusBar,
-  ImageBackground
-} from 'react-native'
+import { StyleSheet, FlatList, ImageBackground } from 'react-native'
 import ListItem from '../components/ListItem'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'

@@ -9,6 +9,8 @@ import {
 } from 'react-native'
 import IconText from '../components/IconText'
 import moment from 'moment'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import FocusAwareStatusBar from '../components/StatusBar'
 
 const City = ({ weatherData }) => {
   const {
@@ -25,39 +27,47 @@ const City = ({ weatherData }) => {
   } = styles
 
   const { name, country, population, sunrise, sunset } = weatherData
+  const insets = useSafeAreaInsets()
 
   return (
-    <SafeAreaView style={container}>
-      <ImageBackground
-        source={require('../../assets/city-background.jpg')}
-        style={image}
-      >
-        <Text style={[cityText, cityName]}>{name}</Text>
-        <Text style={[cityText, countryName]}>{country}</Text>
-        <View style={[populationWrapper, rowLayout]}>
-          <IconText
-            iconName={'user'}
-            iconColor={'red'}
-            bodyText={`Population: ${population}`}
-            bodyTextStyles={populationText}
-          />
-        </View>
-        <View style={[riseSetWrapper, rowLayout]}>
-          <IconText
-            iconName={'sunrise'}
-            iconColor={'white'}
-            bodyText={moment(sunrise).format('h:mm:ss a')}
-            bodyTextStyles={riseSetText}
-          />
-          <IconText
-            iconName={'sunset'}
-            iconColor={'white'}
-            bodyText={moment(sunset).format('h:mm:ss a')}
-            bodyTextStyles={riseSetText}
-          />
-        </View>
-      </ImageBackground>
-    </SafeAreaView>
+    <ImageBackground
+      source={require('../../assets/city-background.jpg')}
+      style={[
+        image,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right
+        }
+      ]}
+    >
+      <FocusAwareStatusBar barStyle="light-content" />
+      <Text style={[cityText, cityName]}>{name}</Text>
+      <Text style={[cityText, countryName]}>{country}</Text>
+      <View style={[populationWrapper, rowLayout]}>
+        <IconText
+          iconName={'user'}
+          iconColor={'red'}
+          bodyText={`Population: ${population}`}
+          bodyTextStyles={populationText}
+        />
+      </View>
+      <View style={[riseSetWrapper, rowLayout]}>
+        <IconText
+          iconName={'sunrise'}
+          iconColor={'white'}
+          bodyText={moment(sunrise).format('h:mm:ss a')}
+          bodyTextStyles={riseSetText}
+        />
+        <IconText
+          iconName={'sunset'}
+          iconColor={'white'}
+          bodyText={moment(sunset).format('h:mm:ss a')}
+          bodyTextStyles={riseSetText}
+        />
+      </View>
+    </ImageBackground>
   )
 }
 
