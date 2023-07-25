@@ -1,10 +1,22 @@
 // when component is being imported no need for {}
 import React from 'react'
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  ImageBackground
+} from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import RowText from '../components/RowText'
 // when exported objects are being imported we need {}
 import { weatherType } from '../utilities/weatherType'
+import { StatusBar } from 'expo-status-bar'
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets
+} from 'react-native-safe-area-context'
+import FocusAwareStatusBar from '../components/StatusBar'
 
 const CurrentWeather = ({ weatherData }) => {
   const {
@@ -16,7 +28,8 @@ const CurrentWeather = ({ weatherData }) => {
     highLow,
     bodyWrapper,
     description,
-    message
+    message,
+    image
   } = styles
 
   const {
@@ -28,13 +41,21 @@ const CurrentWeather = ({ weatherData }) => {
   // undefined will be returned if one of the properties does not exist instead of an error
   const weatherCondition = weather[0]?.main
 
+  const insets = useSafeAreaInsets()
   return (
-    <SafeAreaView
+    <ImageBackground
+      source={require('../../assets/night.jpg')}
       style={[
-        wrapper,
-        { backgroundColor: weatherType[weatherCondition]?.backgroundColor }
+        image,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right
+        }
       ]}
     >
+      <FocusAwareStatusBar barStyle="light-content" />
       <View style={container}>
         <Feather
           name={weatherType[weatherCondition]?.icon}
@@ -58,7 +79,7 @@ const CurrentWeather = ({ weatherData }) => {
         messageOneStyles={description}
         messageTwoStyles={message}
       />
-    </SafeAreaView>
+    </ImageBackground>
   )
 }
 
@@ -72,15 +93,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   tempStyles: {
-    color: 'black',
+    color: 'white',
     fontSize: 48
   },
   feels: {
-    color: 'black',
+    color: 'white',
     fontSize: 30
   },
   highLow: {
-    color: 'black',
+    color: 'white',
     fontSize: 20
   },
   highLowWrapper: {
@@ -93,10 +114,15 @@ const styles = StyleSheet.create({
     marginBottom: 40
   },
   description: {
-    fontSize: 43
+    fontSize: 43,
+    color: 'white'
   },
   message: {
-    fontSize: 25
+    fontSize: 25,
+    color: 'white'
+  },
+  image: {
+    flex: 1
   }
 })
 
