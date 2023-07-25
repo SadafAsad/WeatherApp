@@ -1,26 +1,15 @@
 // when component is being imported no need for {}
 import React from 'react'
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  ImageBackground
-} from 'react-native'
+import { View, Text, StyleSheet, ImageBackground } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import RowText from '../components/RowText'
 // when exported objects are being imported we need {}
 import { weatherType } from '../utilities/weatherType'
-import { StatusBar } from 'expo-status-bar'
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets
-} from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'
 
 const CurrentWeather = ({ weatherData }) => {
   const {
-    wrapper,
     container,
     tempStyles,
     feels,
@@ -84,9 +73,6 @@ const CurrentWeather = ({ weatherData }) => {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1
-  },
   container: {
     flex: 1,
     alignItems: 'center',
