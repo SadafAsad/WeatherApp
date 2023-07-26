@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import Tabs from './src/components/Tabs'
 import { useGetWeather } from './src/hooks/useGetWeather'
 import ErrorItem from './src/components/ErrorItem'
+import Stacks from './src/components/Stacks'
 
 const App = () => {
   const [loading, error, weather] = useGetWeather()
@@ -12,6 +13,7 @@ const App = () => {
     return (
       <NavigationContainer>
         {/* <Tabs weather={weather} /> */}
+        <Stacks weather={weather} />
       </NavigationContainer>
     )
   }
