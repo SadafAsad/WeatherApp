@@ -5,6 +5,7 @@ import City from '../screens/City'
 // 2:34:10 platform specific tab navigator
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Feather } from '@expo/vector-icons'
+import moment from 'moment'
 
 const Tab = createBottomTabNavigator()
 
@@ -34,7 +35,15 @@ const Tabs = ({ weather }) => {
           )
         }}
       >
-        {() => <CurrentWeather weatherData={weather.list[0]} />}
+        {() => (
+          <CurrentWeather
+            weatherData={weather.list[0]}
+            day={moment().isBetween(
+              moment.unix(weather.city.sunrise),
+              moment.unix(weather.city.sunset)
+            )}
+          />
+        )}
       </Tab.Screen>
       <Tab.Screen
         name={'Upcoming'}

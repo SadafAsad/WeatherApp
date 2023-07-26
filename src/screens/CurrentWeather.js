@@ -1,5 +1,5 @@
 // when component is being imported no need for {}
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, ImageBackground } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import RowText from '../components/RowText'
@@ -8,7 +8,7 @@ import { weatherType } from '../utilities/weatherType'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'
 
-const CurrentWeather = ({ weatherData }) => {
+const CurrentWeather = ({ weatherData, day }) => {
   const {
     container,
     tempStyles,
@@ -31,9 +31,20 @@ const CurrentWeather = ({ weatherData }) => {
   const weatherCondition = weather[0]?.main
 
   const insets = useSafeAreaInsets()
+
+  const [imageBackground, setImageBackground] = useState(null)
+
+  useEffect(() => {
+    if (day) {
+      setImageBackground(require('../../assets/day.jpg'));
+    } else {
+      setImageBackground(require('../../assets/night.jpg'));
+    }
+  }, [day])
+
   return (
     <ImageBackground
-      source={require('../../assets/night.jpg')}
+      source={imageBackground}
       style={[
         image,
         {
