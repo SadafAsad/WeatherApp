@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import CurrentWeather from '../screens/CurrentWeather'
 import UpcomingWeather from '../screens/UpcomingWeather'
 import City from '../screens/City'
@@ -10,11 +10,27 @@ import moment from 'moment'
 const Tab = createBottomTabNavigator()
 
 const Tabs = ({ weather }) => {
+  const [tabBarStyle, setTabBarStyle] = useState('')
+
+  const calculateDay = () => {
+    const day = moment().isBetween(
+      moment.unix(weather.city.sunrise),
+      moment.unix(weather.city.sunset)
+    )
+    if (day) {
+      setTabBarStyle('black')
+    } else {
+      setTabBarStyle('white')
+    }
+  }
+
+  useEffect(() => {
+    calculateDay()
+  }, [])
+
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: 'grey',
         tabBarStyle: {
           backgroundColor: 'transparent',
           position: 'absolute'
@@ -30,7 +46,7 @@ const Tabs = ({ weather }) => {
             <Feather
               name={'droplet'}
               size={25}
-              color={focused ? 'white' : 'grey'}
+              color={focused ? { tabBarStyle } : 'grey'}
             />
           )
         }}
@@ -52,7 +68,7 @@ const Tabs = ({ weather }) => {
             <Feather
               name={'clock'}
               size={25}
-              color={focused ? 'black' : 'grey'}
+              color={focused ? { tabBarStyle } : 'grey'}
             />
           )
         }}
@@ -66,7 +82,7 @@ const Tabs = ({ weather }) => {
             <Feather
               name={'home'}
               size={25}
-              color={focused ? 'black' : 'grey'}
+              color={focused ? { tabBarStyle } : 'grey'}
             />
           )
         }}

@@ -33,12 +33,15 @@ const CurrentWeather = ({ weatherData, day }) => {
   const insets = useSafeAreaInsets()
 
   const [imageBackground, setImageBackground] = useState(null)
+  const [barStyle, setBarStyle] = useState('')
 
   useEffect(() => {
     if (day) {
-      setImageBackground(require('../../assets/day.jpg'));
+      setImageBackground(require('../../assets/day.jpg'))
+      setBarStyle('dark-content')
     } else {
-      setImageBackground(require('../../assets/night.jpg'));
+      setImageBackground(require('../../assets/night.jpg'))
+      setBarStyle('light-content')
     }
   }, [day])
 
@@ -55,7 +58,7 @@ const CurrentWeather = ({ weatherData, day }) => {
         }
       ]}
     >
-      <FocusAwareStatusBar barStyle="light-content" />
+      <FocusAwareStatusBar barStyle={barStyle} />
       <View style={container}>
         <Feather
           name={weatherType[weatherCondition]?.icon}
