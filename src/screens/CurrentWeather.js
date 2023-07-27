@@ -23,7 +23,6 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
     cityNameContainer,
     cityName,
     detailContainer,
-    dailyForecast,
     detailStyle
   } = styles
 
@@ -93,7 +92,7 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
         </View>
       </View>
       <View style={detailContainer}>
-        <View style={dailyForecast}>
+        <View style={detailStyle}>
           <DailyForecast weather={weatherData} />
         </View>
         <View style={detailStyle}>
@@ -161,8 +160,8 @@ const styles = StyleSheet.create({
     flex: 0.67,
     flexDirection: 'row'
   },
-  dailyForecast: {
-    flex: 0.35,
+  detailStyle: {
+    flex: 0.5,
     backgroundColor: 'rgba(225, 225, 255, 0.5)',
     borderRadius: 20,
     margin: 10,
@@ -171,16 +170,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     justifyContent: 'center'
-  },
-  detailStyle: {
-    flex: 0.65,
-    backgroundColor: 'rgba(225, 225, 255, 0.5)',
-    borderRadius: 20,
-    margin: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 5,
-    paddingBottom: 5
   }
 })
 

@@ -14,6 +14,7 @@ const DailyForecast = (props) => {
         name={weatherType[item.weather[0].main].icon}
         size={25}
         color="black"
+        style={{ flex: 0.3 }}
       />
       <Text style={styles.tempStyle}>{item.main.temp}</Text>
     </View>
@@ -34,15 +35,18 @@ const styles = StyleSheet.create({
   eachRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5
+    marginBottom: 5,
+    flex: 1
   },
   hourStyle: {
     fontSize: 15,
-    marginRight: 10
+    marginRight: 10,
+    flex: 0.35
   },
   tempStyle: {
     fontSize: 15,
-    marginLeft: 10
+    marginLeft: 10,
+    flex: 0.35
   }
 })
 
