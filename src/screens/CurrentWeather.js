@@ -30,7 +30,7 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
   const {
     main: { temp, feels_like, temp_max, temp_min },
     weather
-  } = weatherData
+  } = weatherData[0]
 
   // optional chaining in the places that we are accessing nested object properties
   // undefined will be returned if one of the properties does not exist instead of an error
@@ -94,7 +94,7 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
       </View>
       <View style={detailContainer}>
         <View style={dailyForecast}>
-          <DailyForecast />
+          <DailyForecast weather={weatherData} />
         </View>
         <View style={detailStyle}>
           <Text>BYE</Text>
