@@ -20,7 +20,10 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
     message,
     image,
     cityNameContainer,
-    cityName
+    cityName,
+    detailContainer,
+    dailyForecast,
+    detailStyle
   } = styles
 
   const {
@@ -88,6 +91,14 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
           <Text style={[cityName, { color: textsColor }]}>{country}</Text>
         </View>
       </View>
+      <View style={detailContainer}>
+        <View style={dailyForecast}>
+          <Text>HI</Text>
+        </View>
+        <View style={detailStyle}>
+          <Text>BYE</Text>
+        </View>
+      </View>
       {/* <RowText
         messageOne={weather[0]?.description}
         messageTwo={weatherType[weatherCondition]?.message}
@@ -144,6 +155,30 @@ const styles = StyleSheet.create({
   },
   cityName: {
     fontSize: 20
+  },
+  detailContainer: {
+    flex: 0.67,
+    flexDirection: 'row'
+  },
+  dailyForecast: {
+    flex: 0.35,
+    backgroundColor: 'rgba(225, 225, 255, 0.5)',
+    borderRadius: 20,
+    margin: 10,
+    paddingLeft: 60,
+    paddingRight: 60,
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  detailStyle: {
+    flex: 0.65,
+    backgroundColor: 'rgba(225, 225, 255, 0.5)',
+    borderRadius: 20,
+    margin: 10,
+    paddingLeft: 60,
+    paddingRight: 60,
+    paddingTop: 10,
+    paddingBottom: 10
   }
 })
 
