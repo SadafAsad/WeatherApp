@@ -8,7 +8,7 @@ import { weatherType } from '../utilities/weatherType'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'
 
-const CurrentWeather = ({ weatherData, day }) => {
+const CurrentWeather = ({ weatherData, day, city, country }) => {
   const {
     container,
     tempStyles,
@@ -18,7 +18,9 @@ const CurrentWeather = ({ weatherData, day }) => {
     bodyWrapper,
     description,
     message,
-    image
+    image,
+    cityNameContainer,
+    cityName
   } = styles
 
   const {
@@ -34,14 +36,17 @@ const CurrentWeather = ({ weatherData, day }) => {
 
   const [imageBackground, setImageBackground] = useState(null)
   const [barStyle, setBarStyle] = useState('')
+  const [textsColor, setTextsColor] = useState('')
 
   useEffect(() => {
     if (day) {
       setImageBackground(require('../../assets/day.jpg'))
       setBarStyle('dark-content')
+      setTextsColor('black')
     } else {
       setImageBackground(require('../../assets/night.jpg'))
       setBarStyle('light-content')
+      setTextsColor('white')
     }
   }, [day])
 
@@ -60,48 +65,60 @@ const CurrentWeather = ({ weatherData, day }) => {
     >
       <FocusAwareStatusBar barStyle={barStyle} />
       <View style={container}>
-        <Feather
-          name={weatherType[weatherCondition]?.icon}
-          size={100}
-          color="white"
-        />
-        <Text style={tempStyles}>{`${temp}°`}</Text>
-        <Text style={feels}>{`Feels like ${feels_like}°`}</Text>
-        <RowText
-          messageOne={`High: ${temp_max}° `}
-          messageTwo={`Low: ${temp_min}°`}
-          containerStyles={highLowWrapper}
-          messageOneStyles={highLow}
-          messageTwoStyles={highLow}
-        />
+        <View style={{ justifyContent: 'center' }}>
+          <Feather
+            name={weatherType[weatherCondition]?.icon}
+            size={100}
+            color={textsColor}
+          />
+          <Text style={[tempStyles, { color: textsColor }]}>{`${temp}°`}</Text>
+          <Text
+            style={[feels, { color: textsColor }]}
+          >{`Feels like ${feels_like}°`}</Text>
+          <RowText
+            messageOne={`High: ${temp_max}° `}
+            messageTwo={`Low: ${temp_min}°`}
+            containerStyles={highLowWrapper}
+            messageOneStyles={[highLow, { color: textsColor }]}
+            messageTwoStyles={[highLow, { color: textsColor }]}
+          />
+        </View>
+        <View style={cityNameContainer}>
+          <Text style={[cityName, { color: textsColor }]}>{city}</Text>
+          <Text style={[cityName, { color: textsColor }]}>{country}</Text>
+        </View>
       </View>
-      <RowText
+      {/* <RowText
         messageOne={weather[0]?.description}
         messageTwo={weatherType[weatherCondition]?.message}
         containerStyles={bodyWrapper}
-        messageOneStyles={description}
-        messageTwoStyles={message}
-      />
+        messageOneStyles={[description, { color: textsColor }]}
+        messageTwoStyles={[message, { color: textsColor }]}
+      /> */}
     </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: 'rgba(225, 225, 255, 0.5)',
+    borderRadius: 20,
+    flexDirection: 'row',
+    flex: 0.33,
+    justifyContent: 'center',
+    margin: 10,
+    paddingLeft: 60,
+    paddingRight: 60,
+    paddingTop: 10,
+    paddingBottom: 10
   },
   tempStyles: {
-    color: 'white',
     fontSize: 48
   },
   feels: {
-    color: 'white',
     fontSize: 30
   },
   highLow: {
-    color: 'white',
     fontSize: 20
   },
   highLowWrapper: {
@@ -114,15 +131,19 @@ const styles = StyleSheet.create({
     marginBottom: 40
   },
   description: {
-    fontSize: 43,
-    color: 'white'
+    fontSize: 43
   },
   message: {
-    fontSize: 25,
-    color: 'white'
+    fontSize: 25
   },
   image: {
     flex: 1
+  },
+  cityNameContainer: {
+    // justifyContent: 'baseline'
+  },
+  cityName: {
+    fontSize: 20
   }
 })
 

@@ -58,6 +58,8 @@ const Tabs = ({ weather }) => {
               moment.unix(weather.city.sunrise),
               moment.unix(weather.city.sunset)
             )}
+            city={weather.city.name}
+            country={weather.city.country}
           />
         )}
       </Tab.Screen>

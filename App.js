@@ -12,8 +12,8 @@ const App = () => {
   if (weather && weather.list && !loading) {
     return (
       <NavigationContainer>
-        {/* <Tabs weather={weather} /> */}
-        <Stacks weather={weather} />
+        <Tabs weather={weather} />
+        {/* <Stacks weather={weather} /> */}
       </NavigationContainer>
     )
   }
