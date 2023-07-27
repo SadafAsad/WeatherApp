@@ -5,7 +5,6 @@ import Tabs from './src/components/Tabs'
 import { useGetWeather } from './src/hooks/useGetWeather'
 import ErrorItem from './src/components/ErrorItem'
 import Stacks from './src/components/Stacks'
-import DailyForecast from './src/components/DailyForecast'
 
 const App = () => {
   const [loading, error, weather] = useGetWeather()
@@ -13,9 +12,8 @@ const App = () => {
   if (weather && weather.list && !loading) {
     return (
       <NavigationContainer>
-        <Tabs weather={weather} />
-        {/* <Stacks weather={weather} /> */}
-        {/* <DailyForecast /> */}
+        {/* <Tabs weather={weather} /> */}
+        <Stacks weather={weather} />
       </NavigationContainer>
     )
   }

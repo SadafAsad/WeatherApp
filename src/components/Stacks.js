@@ -23,11 +23,13 @@ const Stacks = ({ weather }) => {
       <Stack.Screen name="Current">
         {() => (
           <CurrentWeather
-            weatherData={weather.list[0]}
+            weatherData={weather.list.slice(0, 9)}
             day={moment().isBetween(
               moment.unix(weather.city.sunrise),
               moment.unix(weather.city.sunset)
             )}
+            city={weather.city.name}
+            country={weather.city.country}
           />
         )}
       </Stack.Screen>
