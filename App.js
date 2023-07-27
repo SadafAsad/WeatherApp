@@ -5,16 +5,22 @@ import Tabs from './src/components/Tabs'
 import { useGetWeather } from './src/hooks/useGetWeather'
 import ErrorItem from './src/components/ErrorItem'
 import Stacks from './src/components/Stacks'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const App = () => {
   const [loading, error, weather] = useGetWeather()
 
   if (weather && weather.list && !loading) {
     return (
-      <NavigationContainer>
-        {/* <Tabs weather={weather} /> */}
-        <Stacks weather={weather} />
-      </NavigationContainer>
+      // <NavigationContainer>
+      //   {/* <Tabs weather={weather} /> */}
+      //   <Stacks weather={weather} />
+      // </NavigationContainer>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <Stacks weather={weather} />
+        </NavigationContainer>
+      </GestureHandlerRootView>
     )
   }
   return (
