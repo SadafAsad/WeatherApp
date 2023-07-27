@@ -27,8 +27,10 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
   } = styles
 
   const {
-    main: { temp, feels_like, temp_max, temp_min },
-    weather
+    main: { temp, feels_like, temp_max, temp_min, humidity },
+    weather,
+    wind,
+    visibility
   } = weatherData[0]
 
   // optional chaining in the places that we are accessing nested object properties
@@ -96,7 +98,10 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
           <DailyForecast weather={weatherData} />
         </View>
         <View style={detailStyle}>
-          <Text>BYE</Text>
+          <Text>{weather[0].description}</Text>
+          <Text>{`Humidity: ${humidity}%`}</Text>
+          <Text>{`Wind: ${wind.speed}mph`}</Text>
+          <Text>{`Visibility: ${visibility}mi`}</Text>
         </View>
       </View>
       {/* <RowText
