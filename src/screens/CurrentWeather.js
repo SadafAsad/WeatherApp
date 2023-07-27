@@ -7,6 +7,7 @@ import RowText from '../components/RowText'
 import { weatherType } from '../utilities/weatherType'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'
+import DailyForecast from '../components/DailyForecast'
 
 const CurrentWeather = ({ weatherData, day, city, country }) => {
   const {
@@ -15,9 +16,9 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
     feels,
     highLowWrapper,
     highLow,
-    bodyWrapper,
-    description,
-    message,
+    // bodyWrapper,
+    // description,
+    // message,
     image,
     cityNameContainer,
     cityName,
@@ -93,7 +94,7 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
       </View>
       <View style={detailContainer}>
         <View style={dailyForecast}>
-          <Text>HI</Text>
+          <DailyForecast />
         </View>
         <View style={detailStyle}>
           <Text>BYE</Text>
@@ -135,18 +136,18 @@ const styles = StyleSheet.create({
   highLowWrapper: {
     flexDirection: 'row'
   },
-  bodyWrapper: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    paddingLeft: 25,
-    marginBottom: 40
-  },
-  description: {
-    fontSize: 43
-  },
-  message: {
-    fontSize: 25
-  },
+  // bodyWrapper: {
+  //   justifyContent: 'flex-end',
+  //   alignItems: 'flex-start',
+  //   paddingLeft: 25,
+  //   marginBottom: 40
+  // },
+  // description: {
+  //   fontSize: 43
+  // },
+  // message: {
+  //   fontSize: 25
+  // },
   image: {
     flex: 1
   },
@@ -165,20 +166,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(225, 225, 255, 0.5)',
     borderRadius: 20,
     margin: 10,
-    paddingLeft: 60,
-    paddingRight: 60,
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    justifyContent: 'center'
   },
   detailStyle: {
     flex: 0.65,
     backgroundColor: 'rgba(225, 225, 255, 0.5)',
     borderRadius: 20,
     margin: 10,
-    paddingLeft: 60,
-    paddingRight: 60,
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 5,
+    paddingBottom: 5
   }
 })
 

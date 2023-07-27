@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, SafeAreaView, FlatList, StyleSheet } from 'react-native'
+import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 const DailyForecast = () => {
@@ -49,38 +49,27 @@ const DailyForecast = () => {
   const renderItem = ({ item }) => (
     <View style={styles.eachRow}>
       <Text style={styles.hourStyle}>{item.hour}</Text>
-      <Feather name="sun" size={35} color="black" />
+      <Feather name="sun" size={30} color="black" />
       <Text style={styles.tempStyle}>{item.temp}</Text>
     </View>
   )
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <FlatList
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.hour}
-        />
-      </View>
-    </SafeAreaView>
+    <View>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.hour}
+      />
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 0.67,
-    backgroundColor: 'rgba(225, 225, 255, 0.5)',
-    borderRadius: 20,
-    margin: 10,
-    paddingLeft: 60,
-    paddingRight: 60,
-    paddingTop: 10,
-    paddingBottom: 10
-  },
   eachRow: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 5
   },
   hourStyle: {
     fontSize: 20,
