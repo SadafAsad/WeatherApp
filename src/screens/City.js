@@ -23,7 +23,7 @@ const City = ({ weatherData }) => {
 
   return (
     <ImageBackground
-      source={require('../../assets/city-background.jpg')}
+      source={require('../../assets/city.jpg')}
       style={[
         image,
         {
