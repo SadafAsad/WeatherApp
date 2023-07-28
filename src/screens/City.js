@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, StyleSheet, ImageBackground, View } from 'react-native'
 import IconText from '../components/IconText'
 import moment from 'moment'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'
 
-const City = ({ weatherData }) => {
+const City = ({ weatherData, day }) => {
   const {
     image,
     cityName,
@@ -20,6 +20,18 @@ const City = ({ weatherData }) => {
 
   const { name, country, population, sunrise, sunset } = weatherData
   const insets = useSafeAreaInsets()
+  const [txtColor, setTxtColor] = useState('black')
+  const [barStyle, setBarStyle] = useState('black')
+
+  useEffect(() => {
+    if (day) {
+      setBarStyle('dark-content')
+      setTxtColor('black')
+    } else {
+      setBarStyle('light-content')
+      setTxtColor('white')
+    }
+  }, [day])
 
   return (
     <ImageBackground
@@ -34,13 +46,16 @@ const City = ({ weatherData }) => {
         }
       ]}
     >
-      <FocusAwareStatusBar barStyle="light-content" />
-      <Text style={[cityText, cityName]}>{name}</Text>
-      <Text style={[cityText, countryName]}>{country}</Text>
-      <View style={[populationWrapper, rowLayout]}>
+      <View style={styles.overlay} />
+      <FocusAwareStatusBar barStyle={barStyle} />
+      <Text style={[cityText, cityName, { color: { txtColor } }]}>{name}</Text>
+      <Text style={[cityText, countryName, { color: { txtColor } }]}>
+        {country}
+      </Text>
+      <View style={[populationWrapper, rowLayout, { color: { txtColor } }]}>
         <IconText
           iconName={'user'}
-          iconColor={'red'}
+          iconColor={txtColor}
           bodyText={`Population: ${population}`}
           bodyTextStyles={populationText}
         />
@@ -48,13 +63,13 @@ const City = ({ weatherData }) => {
       <View style={[riseSetWrapper, rowLayout]}>
         <IconText
           iconName={'sunrise'}
-          iconColor={'white'}
+          iconColor={txtColor}
           bodyText={moment(sunrise).format('h:mm:ss a')}
           bodyTextStyles={riseSetText}
         />
         <IconText
           iconName={'sunset'}
-          iconColor={'white'}
+          iconColor={txtColor}
           bodyText={moment(sunset).format('h:mm:ss a')}
           bodyTextStyles={riseSetText}
         />
@@ -76,8 +91,7 @@ const styles = StyleSheet.create({
   cityText: {
     justifyContent: 'center',
     alignSelf: 'center',
-    fontWeight: 'bold',
-    color: 'white'
+    fontWeight: 'bold'
   },
   populationWrapper: {
     justifyContent: 'center',
@@ -85,20 +99,22 @@ const styles = StyleSheet.create({
   },
   populationText: {
     fontSize: 25,
-    marginLeft: 7.5,
-    color: 'red'
+    marginLeft: 7.5
   },
   riseSetWrapper: {
     justifyContent: 'space-around',
     marginTop: 30
   },
   riseSetText: {
-    fontSize: 20,
-    color: 'white'
+    fontSize: 20
   },
   rowLayout: {
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(225, 225, 255, 0.1)' // Semi-transparent grey color
   }
 })
 

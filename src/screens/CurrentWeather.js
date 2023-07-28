@@ -138,12 +138,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     flexDirection: 'row',
     flex: 0.33,
-    justifyContent: 'center',
-    margin: 10,
-    paddingLeft: 60,
-    paddingRight: 60,
-    paddingTop: 10,
-    paddingBottom: 10
+    justifyContent: 'space-evenly',
+    margin: 10
   },
   tempStyles: {
     fontSize: 48

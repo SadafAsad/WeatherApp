@@ -88,7 +88,7 @@ const Stacks = ({ weather }) => {
         {({ route }) => (
           <PanGestureHandler onGestureEvent={(e) => handleSwipe(e, 'City')}>
             <View style={[{ flex: 1 }, animatedStyle]}>
-              <City weatherData={weather.city} />
+              <City weatherData={weather.city} day={day} />
             </View>
           </PanGestureHandler>
         )}
