@@ -6,16 +6,12 @@ import FocusAwareStatusBar from '../components/StatusBar'
 import moment from 'moment'
 
 const UpcomingWeather = ({ weatherData, day }) => {
-  const renderItem = ({ item }) => (
-    <ListItem
-      condition={item.weather[0].main}
-      dt_txt={item.dt_txt}
-      min={item.main.temp_min}
-      max={item.main.temp_max}
-    />
-  )
   const { image, header } = styles
   const insets = useSafeAreaInsets()
+  const [imageBackground, setImageBackground] = useState(null)
+  const [barStyle, setBarStyle] = useState('')
+  const [textsColor, setTextsColor] = useState('')
+  const [formattedData, setFormattedData] = useState([])
 
   const reformatDataForSectionList = (data) => {
     // Initialize an empty array to store the formatted sections
@@ -39,14 +35,8 @@ const UpcomingWeather = ({ weatherData, day }) => {
       })
     }
 
-    return sections
+    setFormattedData(sections)
   }
-
-  const formattedData = reformatDataForSectionList(weatherData)
-
-  const [imageBackground, setImageBackground] = useState(null)
-  const [barStyle, setBarStyle] = useState('')
-  const [textsColor, setTextsColor] = useState('')
 
   useEffect(() => {
     if (day) {
@@ -58,7 +48,18 @@ const UpcomingWeather = ({ weatherData, day }) => {
       setBarStyle('light-content')
       setTextsColor('white')
     }
+    reformatDataForSectionList(weatherData)
   }, [day])
+
+  const renderItem = ({ item }) => (
+    <ListItem
+      condition={item.weather[0].main}
+      dt_txt={item.dt_txt}
+      min={item.main.temp_min}
+      max={item.main.temp_max}
+      txt_color={textsColor}
+    />
+  )
 
   return (
     <ImageBackground
@@ -100,8 +101,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   header: {
-    fontSize: 32,
-    backgroundColor: '#fff'
+    backgroundColor: 'rgba(225, 225, 255, 0.5)',
+    padding: 10,
+    fontSize: 15,
+    borderWidth: 1
   }
 })
 

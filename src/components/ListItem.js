@@ -6,38 +6,46 @@ import moment from 'moment'
 
 // each list's elements
 const ListItem = (props) => {
-  const { dt_txt, min, max, condition } = props
+  const { dt_txt, min, max, condition, txt_color } = props
   const { item, date, temp, dateTextWrapper } = styles
+
   return (
     <View style={item}>
-      <Feather name={weatherType[condition]?.icon} size={50} color={'white'} />
+      <Feather
+        name={weatherType[condition]?.icon}
+        size={50}
+        color={txt_color}
+      />
       <View style={dateTextWrapper}>
-        <Text style={date}>{moment(dt_txt).format('dddd')}</Text>
-        <Text style={date}>{moment(dt_txt).format('h:mm:ss a')}</Text>
+        <Text style={[date, { color: { txt_color } }]}>
+          {moment(dt_txt).format('dddd')}
+        </Text>
+        <Text style={[date, { color: { txt_color } }]}>
+          {moment(dt_txt).format('h:mm:ss a')}
+        </Text>
       </View>
-      <Text style={temp}>{`${Math.round(min)}°/${Math.round(max)}°`}</Text>
+      <Text style={[temp, { color: { txt_color } }]}>{`${Math.round(
+        min
+      )}°/${Math.round(max)}°`}</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 10,
     flexDirection: 'row',
     // to evenly distribute items in the row
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderWidth: 5,
-    backgroundColor: 'indianred'
+    backgroundColor: 'rgba(225, 225, 255, 0.5)'
   },
   temp: {
-    color: 'white',
     fontSize: 20
   },
   date: {
-    color: 'white',
     fontSize: 15
   },
   dateTextWrapper: {
