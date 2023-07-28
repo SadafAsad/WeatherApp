@@ -16,14 +16,11 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
     feels,
     highLowWrapper,
     highLow,
-    // bodyWrapper,
-    // description,
-    // message,
     image,
-    cityNameContainer,
     cityName,
     detailContainer,
-    detailStyle
+    detailStyle,
+    smallDetail
   } = styles
 
   const {
@@ -88,7 +85,7 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
             messageTwoStyles={[highLow, { color: textsColor }]}
           />
         </View>
-        <View style={cityNameContainer}>
+        <View>
           <Text style={[cityName, { color: textsColor }]}>{city}</Text>
           <Text style={[cityName, { color: textsColor }]}>{country}</Text>
         </View>
@@ -97,22 +94,38 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
         <View style={detailStyle}>
           <DailyForecast weather={weatherData} style={textsColor} />
         </View>
-        <View style={detailStyle}>
-          <Text style={{ color: textsColor }}>{weather[0].description}</Text>
-          <Text style={{ color: textsColor }}>{`Humidity: ${humidity}%`}</Text>
-          <Text style={{ color: textsColor }}>{`Wind: ${wind.speed}mph`}</Text>
+        <View style={[detailStyle, { alignItems: 'center' }]}>
           <Text
-            style={{ color: textsColor }}
-          >{`Visibility: ${visibility}mi`}</Text>
+            style={[
+              { color: textsColor },
+              { fontWeight: 'bold', fontSize: 20 }
+            ]}
+          >
+            Humidity:
+          </Text>
+          <Text style={{ marginBottom: 30, fontSize: 20 }}>{humidity}%</Text>
+          <Text
+            style={[
+              { color: textsColor },
+              { fontWeight: 'bold', fontSize: 20 }
+            ]}
+          >
+            Wind:
+          </Text>
+          <Text style={{ marginBottom: 30, fontSize: 20 }}>
+            {wind.speed}mph
+          </Text>
+          <Text
+            style={[
+              { color: textsColor },
+              { fontWeight: 'bold', fontSize: 20 }
+            ]}
+          >
+            Visibility:
+          </Text>
+          <Text style={{ fontSize: 20 }}>{visibility}mi</Text>
         </View>
       </View>
-      {/* <RowText
-        messageOne={weather[0]?.description}
-        messageTwo={weatherType[weatherCondition]?.message}
-        containerStyles={bodyWrapper}
-        messageOneStyles={[description, { color: textsColor }]}
-        messageTwoStyles={[message, { color: textsColor }]}
-      /> */}
     </ImageBackground>
   )
 }
@@ -142,23 +155,8 @@ const styles = StyleSheet.create({
   highLowWrapper: {
     flexDirection: 'row'
   },
-  // bodyWrapper: {
-  //   justifyContent: 'flex-end',
-  //   alignItems: 'flex-start',
-  //   paddingLeft: 25,
-  //   marginBottom: 40
-  // },
-  // description: {
-  //   fontSize: 43
-  // },
-  // message: {
-  //   fontSize: 25
-  // },
   image: {
     flex: 1
-  },
-  cityNameContainer: {
-    // justifyContent: 'baseline'
   },
   cityName: {
     fontSize: 20
@@ -177,6 +175,9 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     justifyContent: 'center'
+  },
+  smallDetail: {
+    marginBottom: 30
   }
 })
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import CurrentWeather from '../screens/CurrentWeather'
@@ -12,15 +12,10 @@ const Stack = createNativeStackNavigator()
 
 const Stacks = ({ weather }) => {
   const navigation = useNavigation()
+  const [gestureX, setGestureX] = useState(0)
 
   const handleSwipe = (event, route) => {
     const { translationX } = event.nativeEvent
-
-    // if (translationX < -100) {
-    //   navigation.navigate('Upcoming')
-    // } else if (translationX > 100) {
-    //   navigation.navigate('City')
-    // }
 
     // Check the current route name
     if (route === 'Current') {
@@ -34,6 +29,10 @@ const Stacks = ({ weather }) => {
     } else if (route === 'City' && translationX < -100) {
       navigation.goBack() // Go back to the 'Current' screen from 'City'
     }
+  }
+
+  const animatedStyle = {
+    transform: [{ translateX: gestureX }]
   }
 
   return (
@@ -50,7 +49,7 @@ const Stacks = ({ weather }) => {
       <Stack.Screen name="Current">
         {({ route }) => (
           <PanGestureHandler onGestureEvent={(e) => handleSwipe(e, route.name)}>
-            <View style={{ flex: 1 }}>
+            <View style={[{ flex: 1 }, animatedStyle]}>
               <CurrentWeather
                 weatherData={weather.list.slice(0, 9)}
                 day={moment().isBetween(
@@ -67,7 +66,7 @@ const Stacks = ({ weather }) => {
       <Stack.Screen name="Upcoming">
         {({ route }) => (
           <PanGestureHandler onGestureEvent={(e) => handleSwipe(e, 'Upcoming')}>
-            <View style={{ flex: 1 }}>
+            <View style={[{ flex: 1 }, animatedStyle]}>
               <UpcomingWeather weatherData={weather.list} />
             </View>
           </PanGestureHandler>
@@ -76,7 +75,7 @@ const Stacks = ({ weather }) => {
       <Stack.Screen name="City">
         {({ route }) => (
           <PanGestureHandler onGestureEvent={(e) => handleSwipe(e, 'City')}>
-            <View style={{ flex: 1 }}>
+            <View style={[{ flex: 1 }, animatedStyle]}>
               <City weatherData={weather.city} />
             </View>
           </PanGestureHandler>
