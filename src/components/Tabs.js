@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useState, useEffect } from 'react'
 import CurrentWeather from '../screens/CurrentWeather'
 import UpcomingWeather from '../screens/UpcomingWeather'
@@ -26,7 +27,7 @@ const Tabs = ({ weather }) => {
 
   useEffect(() => {
     calculateDay()
-  }, [])
+  })
 
   return (
     <Tab.Navigator

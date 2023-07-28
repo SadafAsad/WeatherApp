@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 // when component is being imported no need for {}
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, ImageBackground } from 'react-native'
@@ -19,8 +20,7 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
     image,
     cityName,
     detailContainer,
-    detailStyle,
-    smallDetail
+    detailStyle
   } = styles
 
   const {
@@ -175,9 +175,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     justifyContent: 'center'
-  },
-  smallDetail: {
-    marginBottom: 30
   }
 })
 

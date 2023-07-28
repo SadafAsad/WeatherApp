@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  ImageBackground,
-  StatusBar,
-  View
-} from 'react-native'
+import { Text, StyleSheet, ImageBackground, View } from 'react-native'
 import IconText from '../components/IconText'
 import moment from 'moment'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -14,7 +7,6 @@ import FocusAwareStatusBar from '../components/StatusBar'
 
 const City = ({ weatherData }) => {
   const {
-    container,
     image,
     cityName,
     cityText,
@@ -72,10 +64,6 @@ const City = ({ weatherData }) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0
-  },
   image: {
     flex: 1
   },
