@@ -139,7 +139,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 0.33,
     justifyContent: 'space-evenly',
-    margin: 10
+    margin: 10,
+    paddingTop: 10
   },
   tempStyles: {
     fontSize: 48
