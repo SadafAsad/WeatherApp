@@ -5,18 +5,20 @@ import moment from 'moment'
 import { weatherType } from '../utilities/weatherType'
 
 const DailyForecast = (props) => {
-  const { weather } = props
+  const { weather, style } = props
 
   const renderItem = ({ item }) => (
     <View style={styles.eachRow}>
-      <Text style={styles.hourStyle}>{moment(item.dt_txt).format('h a')}</Text>
+      <Text style={[styles.hourStyle, { color: style }]}>
+        {moment(item.dt_txt).format('h a')}
+      </Text>
       <Feather
         name={weatherType[item.weather[0].main].icon}
         size={25}
-        color="black"
+        color={style}
         style={{ flex: 0.3 }}
       />
-      <Text style={styles.tempStyle}>{item.main.temp}</Text>
+      <Text style={[styles.tempStyle, { color: style }]}>{item.main.temp}</Text>
     </View>
   )
 

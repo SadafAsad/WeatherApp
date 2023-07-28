@@ -95,13 +95,13 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
       </View>
       <View style={detailContainer}>
         <View style={detailStyle}>
-          <DailyForecast weather={weatherData} />
+          <DailyForecast weather={weatherData} style={textsColor} />
         </View>
         <View style={detailStyle}>
-          <Text>{weather[0].description}</Text>
-          <Text>{`Humidity: ${humidity}%`}</Text>
-          <Text>{`Wind: ${wind.speed}mph`}</Text>
-          <Text>{`Visibility: ${visibility}mi`}</Text>
+          <Text style={{ color: textsColor }}>{weather[0].description}</Text>
+          <Text style={{ color: textsColor }}>{`Humidity: ${humidity}%`}</Text>
+          <Text style={{ color: textsColor }}>{`Wind: ${wind.speed}mph`}</Text>
+          <Text style={{ color: textsColor }}>{`Visibility: ${visibility}mi`}</Text>
         </View>
       </View>
       {/* <RowText
