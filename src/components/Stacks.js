@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import CurrentWeather from '../screens/CurrentWeather'
@@ -17,41 +16,41 @@ const Stacks = ({ weather }) => {
   const handleSwipe = (event, route) => {
     const { translationX } = event.nativeEvent
 
-    if (translationX < -100) {
-      navigation.navigate('Upcoming')
-    } else if (translationX > 100) {
-      navigation.navigate('City')
-    }
-
-    // // Check the current route name
-    // if (route === 'Current') {
-    //   if (translationX > 100) {
-    //     navigation.navigate('City')
-    //   } else if (translationX < -100) {
-    //     navigation.navigate('Upcoming')
-    //   }
-    // } else if (route === 'Upcoming' && translationX > 100) {
-    //   navigation.goBack() // Go back to the 'Current' screen from 'Upcoming'
-    // } else if (route === 'City' && translationX < -100) {
-    //   navigation.goBack() // Go back to the 'Current' screen from 'City'
+    // if (translationX < -100) {
+    //   navigation.navigate('Upcoming')
+    // } else if (translationX > 100) {
+    //   navigation.navigate('City')
     // }
+
+    // Check the current route name
+    if (route === 'Current') {
+      if (translationX > 100) {
+        navigation.navigate('City')
+      } else if (translationX < -100) {
+        navigation.navigate('Upcoming')
+      }
+    } else if (route === 'Upcoming' && translationX > 100) {
+      navigation.goBack() // Go back to the 'Current' screen from 'Upcoming'
+    } else if (route === 'City' && translationX < -100) {
+      navigation.goBack() // Go back to the 'Current' screen from 'City'
+    }
   }
 
   return (
-    <PanGestureHandler onGestureEvent={handleSwipe}>
-      <View style={{ flex: 1 }}>
-        <Stack.Navigator
-          screenOptions={{
-            tabBarStyle: {
-              backgroundColor: 'transparent',
-              position: 'absolute'
-            },
-            headerShown: false
-          }}
-          initialRouteName="Current"
-        >
-          <Stack.Screen name="Current">
-            {() => (
+    <Stack.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: 'transparent',
+          position: 'absolute'
+        },
+        headerShown: false
+      }}
+      initialRouteName="Current"
+    >
+      <Stack.Screen name="Current">
+        {({ route }) => (
+          <PanGestureHandler onGestureEvent={(e) => handleSwipe(e, route.name)}>
+            <View style={{ flex: 1 }}>
               <CurrentWeather
                 weatherData={weather.list.slice(0, 9)}
                 day={moment().isBetween(
@@ -61,17 +60,29 @@ const Stacks = ({ weather }) => {
                 city={weather.city.name}
                 country={weather.city.country}
               />
-            )}
-          </Stack.Screen>
-          <Stack.Screen name="Upcoming">
-            {() => <UpcomingWeather weatherData={weather.list} />}
-          </Stack.Screen>
-          <Stack.Screen name="City">
-            {() => <City weatherData={weather.city} />}
-          </Stack.Screen>
-        </Stack.Navigator>
-      </View>
-    </PanGestureHandler>
+            </View>
+          </PanGestureHandler>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="Upcoming">
+        {({ route }) => (
+          <PanGestureHandler onGestureEvent={(e) => handleSwipe(e, 'Upcoming')}>
+            <View style={{ flex: 1 }}>
+              <UpcomingWeather weatherData={weather.list} />
+            </View>
+          </PanGestureHandler>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="City">
+        {({ route }) => (
+          <PanGestureHandler onGestureEvent={(e) => handleSwipe(e, 'City')}>
+            <View style={{ flex: 1 }}>
+              <City weatherData={weather.city} />
+            </View>
+          </PanGestureHandler>
+        )}
+      </Stack.Screen>
+    </Stack.Navigator>
   )
 }
 

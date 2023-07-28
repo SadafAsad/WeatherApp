@@ -101,7 +101,9 @@ const CurrentWeather = ({ weatherData, day, city, country }) => {
           <Text style={{ color: textsColor }}>{weather[0].description}</Text>
           <Text style={{ color: textsColor }}>{`Humidity: ${humidity}%`}</Text>
           <Text style={{ color: textsColor }}>{`Wind: ${wind.speed}mph`}</Text>
-          <Text style={{ color: textsColor }}>{`Visibility: ${visibility}mi`}</Text>
+          <Text
+            style={{ color: textsColor }}
+          >{`Visibility: ${visibility}mi`}</Text>
         </View>
       </View>
       {/* <RowText
