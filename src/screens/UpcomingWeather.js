@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(225, 225, 255, 0.5)',
     padding: 10,
     fontSize: 15,
-    borderWidth: 1
+    borderWidth: 1,
+    margin: 10
   }
 })
 
