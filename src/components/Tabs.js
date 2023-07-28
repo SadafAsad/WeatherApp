@@ -12,11 +12,14 @@ const Tab = createBottomTabNavigator()
 
 const Tabs = ({ weather }) => {
   const [tabBarStyle, setTabBarStyle] = useState('')
+  const [day, setDay] = useState(true)
 
   const calculateDay = () => {
-    const day = moment().isBetween(
-      moment.unix(weather.city.sunrise),
-      moment.unix(weather.city.sunset)
+    setDay(
+      moment().isBetween(
+        moment.unix(weather.city.sunrise),
+        moment.unix(weather.city.sunset)
+      )
     )
     if (day) {
       setTabBarStyle('black')
@@ -55,10 +58,7 @@ const Tabs = ({ weather }) => {
         {() => (
           <CurrentWeather
             weatherData={weather.list.slice(0, 9)}
-            day={moment().isBetween(
-              moment.unix(weather.city.sunrise),
-              moment.unix(weather.city.sunset)
-            )}
+            day={day}
             city={weather.city.name}
             country={weather.city.country}
           />
@@ -76,7 +76,7 @@ const Tabs = ({ weather }) => {
           )
         }}
       >
-        {() => <UpcomingWeather weatherData={weather.list} />}
+        {() => <UpcomingWeather weatherData={weather.list} day={day} />}
       </Tab.Screen>
       <Tab.Screen
         name={'City'}

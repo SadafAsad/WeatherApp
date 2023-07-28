@@ -3,6 +3,7 @@ import { StyleSheet, ImageBackground, SectionList, Text } from 'react-native'
 import ListItem from '../components/ListItem'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'
+import moment from 'moment'
 
 const UpcomingWeather = ({ weatherData }) => {
   const renderItem = ({ item }) => (
@@ -69,7 +70,7 @@ const UpcomingWeather = ({ weatherData }) => {
         // hence, updating the list rather than rebuilding evrything when a change happens
         keyExtractor={(item, index) => item + index}
         renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.header}>{title}</Text>
+          <Text style={styles.header}>{moment(title).format('dddd')}</Text>
         )}
       />
     </ImageBackground>
