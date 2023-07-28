@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, FlatList, ImageBackground } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, ImageBackground, SectionList, Text } from 'react-native'
 import ListItem from '../components/ListItem'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'
@@ -15,6 +15,33 @@ const UpcomingWeather = ({ weatherData }) => {
   )
   const { image } = styles
   const insets = useSafeAreaInsets()
+
+  const reformatDataForSectionList = (data) => {
+    // Initialize an empty array to store the formatted sections
+    const sections = []
+
+    // Group the data by the date (dt_txt) using a dictionary
+    const groupedData = data.reduce((acc, item) => {
+      const date = item.dt_txt.split(' ')[0] // Extract the date part from dt_txt
+      if (!acc[date]) {
+        acc[date] = []
+      }
+      acc[date].push(item)
+      return acc
+    }, {})
+
+    // Iterate through the grouped data and create sections
+    for (const date in groupedData) {
+      sections.push({
+        title: date,
+        data: groupedData[date]
+      })
+    }
+
+    return sections
+  }
+
+  const formattedData = reformatDataForSectionList(weatherData)
 
   return (
     <ImageBackground
@@ -34,13 +61,16 @@ const UpcomingWeather = ({ weatherData }) => {
       ]}
     >
       <FocusAwareStatusBar barStyle="light-content" />
-      <FlatList
-        data={weatherData}
+      <SectionList
+        sections={formattedData}
         renderItem={renderItem}
         // reason for key is performance based
         // keep track of each item in the list
         // hence, updating the list rather than rebuilding evrything when a change happens
-        keyExtractor={(item) => item.dt_txt}
+        keyExtractor={(item, index) => item + index}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.header}>{title}</Text>
+        )}
       />
     </ImageBackground>
   )
@@ -49,6 +79,10 @@ const UpcomingWeather = ({ weatherData }) => {
 const styles = StyleSheet.create({
   image: {
     flex: 1
+  },
+  header: {
+    fontSize: 32,
+    backgroundColor: '#fff'
   }
 })
 
