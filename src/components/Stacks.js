@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import CurrentWeather from '../screens/CurrentWeather'
@@ -14,6 +14,7 @@ const Stack = createNativeStackNavigator()
 const Stacks = ({ weather }) => {
   const navigation = useNavigation()
   const [gestureX, setGestureX] = useState(0)
+  const [day, setDay] = useState(true)
 
   const handleSwipe = (event, route) => {
     const { translationX } = event.nativeEvent
@@ -36,6 +37,19 @@ const Stacks = ({ weather }) => {
     transform: [{ translateX: gestureX }]
   }
 
+  const calculateDay = () => {
+    setDay(
+      moment().isBetween(
+        moment.unix(weather.city.sunrise),
+        moment.unix(weather.city.sunset)
+      )
+    )
+  }
+
+  useEffect(() => {
+    calculateDay()
+  })
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -53,10 +67,7 @@ const Stacks = ({ weather }) => {
             <View style={[{ flex: 1 }, animatedStyle]}>
               <CurrentWeather
                 weatherData={weather.list.slice(0, 9)}
-                day={moment().isBetween(
-                  moment.unix(weather.city.sunrise),
-                  moment.unix(weather.city.sunset)
-                )}
+                day={day}
                 city={weather.city.name}
                 country={weather.city.country}
               />
@@ -68,7 +79,7 @@ const Stacks = ({ weather }) => {
         {({ route }) => (
           <PanGestureHandler onGestureEvent={(e) => handleSwipe(e, 'Upcoming')}>
             <View style={[{ flex: 1 }, animatedStyle]}>
-              <UpcomingWeather weatherData={weather.list} />
+              <UpcomingWeather weatherData={weather.list} day={day} />
             </View>
           </PanGestureHandler>
         )}
