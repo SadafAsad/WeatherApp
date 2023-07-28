@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, ImageBackground, SectionList, Text } from 'react-native'
 import ListItem from '../components/ListItem'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import FocusAwareStatusBar from '../components/StatusBar'
 import moment from 'moment'
 
-const UpcomingWeather = ({ weatherData }) => {
+const UpcomingWeather = ({ weatherData, day }) => {
   const renderItem = ({ item }) => (
     <ListItem
       condition={item.weather[0].main}
@@ -14,7 +14,7 @@ const UpcomingWeather = ({ weatherData }) => {
       max={item.main.temp_max}
     />
   )
-  const { image } = styles
+  const { image, header } = styles
   const insets = useSafeAreaInsets()
 
   const reformatDataForSectionList = (data) => {
@@ -44,13 +44,29 @@ const UpcomingWeather = ({ weatherData }) => {
 
   const formattedData = reformatDataForSectionList(weatherData)
 
+  const [imageBackground, setImageBackground] = useState(null)
+  const [barStyle, setBarStyle] = useState('')
+  const [textsColor, setTextsColor] = useState('')
+
+  useEffect(() => {
+    if (day) {
+      setImageBackground(require('../../assets/day.jpg'))
+      setBarStyle('dark-content')
+      setTextsColor('black')
+    } else {
+      setImageBackground(require('../../assets/night.jpg'))
+      setBarStyle('light-content')
+      setTextsColor('white')
+    }
+  }, [day])
+
   return (
     <ImageBackground
       // props are used to pass data from parent to child
       // they can be used to customize our components
       // core components usually come with props which can be used
       // prop source here is used to set the image
-      source={require('../../assets/upcoming-background.jpg')}
+      source={imageBackground}
       style={[
         image,
         {
@@ -61,7 +77,7 @@ const UpcomingWeather = ({ weatherData }) => {
         }
       ]}
     >
-      <FocusAwareStatusBar barStyle="light-content" />
+      <FocusAwareStatusBar barStyle={barStyle} />
       <SectionList
         sections={formattedData}
         renderItem={renderItem}
@@ -70,7 +86,9 @@ const UpcomingWeather = ({ weatherData }) => {
         // hence, updating the list rather than rebuilding evrything when a change happens
         keyExtractor={(item, index) => item + index}
         renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.header}>{moment(title).format('dddd')}</Text>
+          <Text style={[header, { color: { textsColor } }]}>
+            {moment(title).format('dddd')}
+          </Text>
         )}
       />
     </ImageBackground>
