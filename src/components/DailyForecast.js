@@ -19,7 +19,9 @@ const DailyForecast = (props) => {
         color={style}
         style={{ flex: 0.3 }}
       />
-      <Text style={[styles.tempStyle, { color: style }]}>{item.main.temp}</Text>
+      <Text style={[styles.tempStyle, { color: style }]}>{`${Math.round(
+        item.main.temp
+      )}•`}</Text>
     </View>
   )
 
@@ -39,17 +41,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 5,
-    flex: 1
+    flex: 1,
+    justifyContent: 'space-around'
   },
   hourStyle: {
-    fontSize: 15,
-    marginRight: 10,
-    flex: 0.35
+    fontSize: 15
   },
   tempStyle: {
-    fontSize: 15,
-    marginLeft: 10,
-    flex: 0.35
+    fontSize: 15
   }
 })
 
