@@ -52,7 +52,7 @@ const City = ({ weatherData, day }) => {
       <Text style={[cityText, countryName, { color: { txtColor } }]}>
         {country}
       </Text>
-      <View style={[populationWrapper, rowLayout, { color: { txtColor } }]}>
+      <View style={[populationWrapper, rowLayout]}>
         <IconText
           iconName={'user'}
           iconColor={txtColor}
