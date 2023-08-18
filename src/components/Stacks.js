@@ -61,6 +61,7 @@ const Stacks = ({ weather }) => {
         gestureEnabled: true,
         gestureDirection: 'horizontal'
       }}
+      headerMode="float"
       initialRouteName="Current"
     >
       <Stack.Screen name="Current">

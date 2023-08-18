@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { StatusBar } from 'react-native'
-import { useIsFocused } from '@react-navigation/native'
 
-const FocusAwareStatusBar = (props) => {
-  const isFocused = useIsFocused()
-  return isFocused ? <StatusBar {...props} /> : null
+const FocusAwareStatusBar = ({ barStyle }) => {
+  return (
+    <StatusBar translucent backgroundColor="transparent" barStyle={barStyle} />
+  )
 }
 
 export default FocusAwareStatusBar
