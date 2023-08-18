@@ -57,7 +57,8 @@ const Stacks = ({ weather }) => {
           backgroundColor: 'transparent',
           position: 'absolute'
         },
-        headerShown: false
+        headerShown: false,
+        gestureEnabled: true
       }}
       initialRouteName="Current"
     >
