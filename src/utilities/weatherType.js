@@ -5,12 +5,12 @@ export const weatherType = {
     backgroundColor: '#000000'
   },
   Drizzle: {
-    icon: 'could-rain',
+    icon: 'cloud-rain',
     message: 'It might rain a little',
     backgroundColor: '#36454f'
   },
   Rain: {
-    icon: 'umbrella',
+    icon: 'cloud-rain',
     message: 'You will need an umbrella',
     backgroundColor: '#0000ff'
   },
@@ -30,12 +30,12 @@ export const weatherType = {
     backgroundColor: '#363636'
   },
   Haze: {
-    icon: 'wind',
+    icon: 'umbrella',
     message: 'It might be a bit damp',
     backgroundColor: '#58586b'
   },
   Mist: {
-    icon: 'align-justify',
+    icon: 'cloud',
     message: 'It might be hard to see',
     backgroundColor: '#3e3e37'
   }
