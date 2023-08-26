@@ -11,7 +11,7 @@ const DailyForecast = (props) => {
   const renderItem = ({ item }) => (
     <View style={styles.eachRow}>
       <Text style={[styles.hourStyle, { color: style }]}>
-        {moment(item.dt_txt).format('h a')}
+        {moment(item.dt_txt).format('hh a')}
       </Text>
       <Feather
         name={weatherType[item.weather[0].main].icon}
