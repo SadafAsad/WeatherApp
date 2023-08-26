@@ -3,7 +3,7 @@
 WeatherApp is a user-friendly weather app that provides you with real-time weather updates and 5-day forecasts with 3-hour intervals. Get accurate and detailed weather information for your current location. Stay prepared for any weather conditions and plan your day accordingly. 
 
 <p align="center">
-  <img src='assets/iOSDemo.png' width='200' style='marginBottom: 10'/>
+  <img src='assets/iOSDemo.png' width='200'/>
   <img src='assets/AndroidDemo.png' width='200'/>
 </p>
 
