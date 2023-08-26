@@ -27,31 +27,7 @@ Clone the repository: `git clone https://github.com/SadafAsad/WeatherApp.git`
 
 Navigate to the project directory: `cd WeatherApp`
 
-Install dependencies:
-
-```
-brew install node
-
-npm install -g expo-cli
-
-npm install rslint --save-dev 
-
-npm install @react-native-community/eslint-config --save-dev
-
-npm install --save-dev --save-exact prettier
-
-npm install @react-navigation/native 
-
-npx expo install react-native-screens react-native-safe-area-context
-
-npm install @react-navigation/bottom-tabs
-
-npx expo install expo-location 
-
-npm install -D react-native-dotenv 
-
-npm install moment --save
-```
+Install dependencies: `npm install`
 
 Enter your API key in the .env file
 
